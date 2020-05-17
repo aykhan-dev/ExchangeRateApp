@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="exchangeItemData"
+            type="aykhan.task.exchange.local.ExchangeRate" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_default"
+        app:cardCornerRadius="@dimen/exchange_item_card_radius"
+        app:cardElevation="@dimen/exchange_item_card_elevation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_default">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{exchangeItemData.code}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textStyle="bold"
+                tools:text="GBP" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_default" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{exchangeItemData.name}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                tools:text="Name: U.K. Pound Sterling" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_large" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/amount"
+                app:boxCornerRadiusTopEnd="@dimen/input_text_layout_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/input_text_layout_corner_radius">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

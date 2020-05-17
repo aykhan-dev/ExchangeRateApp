@@ -10,7 +10,11 @@ class ExchangeStandartItemViewHolder private constructor(
     private val binding: ItemLayoutExchangeStandartBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(data: ExchangeRate, clickListener: (code: String) -> Unit) {
+    fun bind(
+        data: ExchangeRate,
+        clickListener: (code: String) -> Unit,
+        amount: Double
+    ) {
         binding.apply {
             exchangeItemData = data
         }

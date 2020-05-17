@@ -15,7 +15,11 @@ class ExchangeRateFragment : Fragment() {
     private lateinit var binding: FragmentExchangeRateBinding
 
     private val viewModel by lazy { ViewModelProvider(this).get(ExchangeRateViewModel::class.java) }
-    private val recyclerViewAdapter by lazy { ExchangeRateRecyclerAdapter { onExchangeItemClick(it) } }
+    private val recyclerViewAdapter by lazy {
+        ExchangeRateRecyclerAdapter(
+            { viewModel.updateExchangeCode(it) }
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,10 +58,10 @@ class ExchangeRateFragment : Fragment() {
             }
         })
 
-    }
+        viewModel.amount.observe(viewLifecycleOwner, Observer {
+            it?.let { recyclerViewAdapter.amount = it }
+        })
 
-    private fun onExchangeItemClick(clickedCode: String) {
-        viewModel.updateExchangeCode(clickedCode)
     }
 
 }
