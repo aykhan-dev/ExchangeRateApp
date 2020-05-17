@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="page_default_padding">16dp</dimen>
+
+    <dimen name="exchange_item_card_elevation">15dp</dimen>
+    <dimen name="exchange_item_card_radius">10dp</dimen>
+
+    <dimen name="text_space">10dp</dimen>
+</resources>
