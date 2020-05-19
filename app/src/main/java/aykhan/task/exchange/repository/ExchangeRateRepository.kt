@@ -16,15 +16,17 @@ class ExchangeRateRepository private constructor(private val database: AppDataba
 
     private val exchangeRateService by lazy { ApiInitHelper.exchangeRateService }
 
-    val exchangeRates by lazy { database.exchangeRateDao.getVideos() }
+    val exchangeRates by lazy { database.exchangeRateDao.getExchangeRates() }
 
-    suspend fun getRates(base: String) = try {
-        val response = exchangeRateService.fetchRates(base)
+    suspend fun getExchangeRates(base: String) = try {
+        val response = exchangeRateService.getExchangeRates(base)
         response.body()?.let { list ->
             if (response.isSuccessful) withContext(Default) {
                 val converted = list.asEntityObject()
+                database.exchangeRateDao.delete(base)
                 database.exchangeRateDao.insertAll(*converted)
             }
+            NetworkState.Failure
         }
         NetworkState.Success
     } catch (exception: Exception) {

@@ -9,10 +9,13 @@ import androidx.room.OnConflictStrategy.REPLACE
 interface ExchangeDao {
 
     @Query("select * from exchangeRates")
-    fun getVideos(): LiveData<List<ExchangeRate>>
+    fun getExchangeRates(): LiveData<List<ExchangeRate>>
 
     @Insert(onConflict = REPLACE)
     fun insertAll(vararg exchangeRate: ExchangeRate)
+
+    @Query("delete from exchangeRates where code like :code")
+    fun delete(code: String)
 
 }
 
@@ -29,7 +32,7 @@ fun getDatabase(context: Context): AppDatabase {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java,
-                "Videos"
+                "ExchangeRates"
             ).build()
         }
     }

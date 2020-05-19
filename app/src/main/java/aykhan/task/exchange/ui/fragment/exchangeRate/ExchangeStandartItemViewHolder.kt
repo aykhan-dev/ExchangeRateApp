@@ -12,8 +12,7 @@ class ExchangeStandartItemViewHolder private constructor(
 
     fun bind(
         data: ExchangeRate,
-        clickListener: (code: String) -> Unit,
-        amount: Double
+        clickListener: (code: String) -> Unit
     ) {
         binding.apply {
             exchangeItemData = data

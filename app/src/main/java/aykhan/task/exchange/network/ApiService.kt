@@ -13,12 +13,12 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val BASE_URL = "https://cotyloid-workmen.000webhostapp.com/"
+private const val BASE_URL = "https://tayqatech.com/"
 
 interface ExchangeRateService {
 
     @GET("rates.php")
-    suspend fun fetchRates(@Query("base") base: String): Response<List<ExchangeItemPOJO>>
+    suspend fun getExchangeRates(@Query("base") base: String): Response<List<ExchangeItemPOJO>>
 
 }
 

@@ -10,7 +10,7 @@ data class ExchangeRate (
     val alphaCode: String,
     val numericCode: String,
     val name: String,
-    val rate: Double,
+    var rate: Double,
     val date: String,
     val inverseRate: Double
 )

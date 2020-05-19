@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,93 +8,79 @@
             name="exchangeItemData"
             type="aykhan.task.exchange.local.ExchangeRate" />
 
-        <variable
-            name="amount"
-            type="Double" />
-
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_default"
-        app:cardCornerRadius="@dimen/exchange_item_card_radius"
-        app:cardElevation="@dimen/exchange_item_card_elevation">
+        android:orientation="vertical"
+        android:padding="@dimen/padding_default">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_default">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{exchangeItemData.code}"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                    android:textStyle="bold"
-                    tools:text="GBP" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|end"
-                    android:text="@{exchangeItemData.date}"
-                    android:textAlignment="gravity"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textStyle="italic"
-                    tools:text="Wed, 13 May 2020 00:00:01 GMT" />
-
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_default" />
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{exchangeItemData.name}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                tools:text="Name: U.K. Pound Sterling" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_default" />
+                android:text="@{exchangeItemData.code}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textStyle="bold"
+                tools:text="GBP" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{exchangeItemData.numericCode}"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|end"
+                android:text="@{exchangeItemData.date}"
+                android:textAlignment="gravity"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                tools:text="Numeric Code: 826" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{exchangeItemData.alphaCode}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                tools:text="Alpha Code: GBP" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_default" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{Double.toString(exchangeItemData.rate)}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                tools:text="Rate: 0.888787228515155" />
+                android:textStyle="italic"
+                tools:text="Wed, 13 May 2020 00:00:01 GMT" />
 
         </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_default" />
 
-    </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{exchangeItemData.name}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            tools:text="Name: U.K. Pound Sterling" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_default" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{exchangeItemData.numericCode}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            tools:text="Numeric Code: 826" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{exchangeItemData.alphaCode}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            tools:text="Alpha Code: GBP" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_default" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{Double.toString(exchangeItemData.rate)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            tools:text="Rate: 0.888787228515155" />
+
+    </LinearLayout>
 
 </layout>

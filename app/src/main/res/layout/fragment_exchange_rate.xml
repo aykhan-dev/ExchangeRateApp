@@ -10,24 +10,28 @@
             type="aykhan.task.exchange.viewModel.fragment.ExchangeRateViewModel" />
     </data>
 
-        <LinearLayout
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.exchangeRate.ExchangeRateFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_exchange_rates"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:orientation="vertical"
-            tools:context=".ui.fragment.exchangeRate.ExchangeRateFragment">
+            android:padding="@dimen/padding_default"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_layout_exchange_standart" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_exchange_rates"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:padding="@dimen/padding_default"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_layout_exchange_standart" />
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
 
-        </LinearLayout>
+    </FrameLayout>
 
 </layout>

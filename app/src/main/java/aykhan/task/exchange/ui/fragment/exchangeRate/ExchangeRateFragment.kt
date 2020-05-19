@@ -4,11 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import aykhan.task.exchange.databinding.FragmentExchangeRateBinding
 import aykhan.task.exchange.viewModel.fragment.ExchangeRateViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Default
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ExchangeRateFragment : Fragment() {
 
@@ -17,7 +23,8 @@ class ExchangeRateFragment : Fragment() {
     private val viewModel by lazy { ViewModelProvider(this).get(ExchangeRateViewModel::class.java) }
     private val recyclerViewAdapter by lazy {
         ExchangeRateRecyclerAdapter(
-            { viewModel.updateExchangeCode(it) }
+            { viewModel.updateExchangeCode(it) },
+            { viewModel.multiplexer = it }
         )
     }
 
@@ -51,15 +58,17 @@ class ExchangeRateFragment : Fragment() {
 
     private fun observeData() {
 
-        viewModel.exchangeRates.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                recyclerViewAdapter.submitList(it)
-                viewModel.fetchExchangeRates(true)
+        viewModel.exchangeRates.observe(viewLifecycleOwner, Observer { list ->
+            list?.let {
+                CoroutineScope(Default).launch {
+                    val data = viewModel.modifyData(it)
+                    withContext(Main) {
+                        binding.progressCircular.isVisible = false
+                        recyclerViewAdapter.submitList(data)
+                    }
+                    viewModel.fetchExchangeRates(true)
+                }
             }
-        })
-
-        viewModel.amount.observe(viewLifecycleOwner, Observer {
-            it?.let { recyclerViewAdapter.amount = it }
         })
 
     }

@@ -9,16 +9,20 @@ import aykhan.task.exchange.repository.ExchangeRateRepository
 import aykhan.task.exchange.utils.DEFAULT_EXCHANGE_BASE
 import aykhan.task.exchange.utils.EXCHANGE_BASE_KEY
 
-class RefreshListWork(appContext: Context, params: WorkerParameters) :
-    CoroutineWorker(appContext, params) {
+class RefreshListWork(
+    appContext: Context,
+    params: WorkerParameters
+) : CoroutineWorker(appContext, params) {
 
     override suspend fun doWork(): Result = try {
-        ExchangeRateRepository.getInstance(getDatabase(applicationContext))
-            .getRates(
-                PreferencesManager.getInstance(applicationContext).getStringElement(
-                    EXCHANGE_BASE_KEY, DEFAULT_EXCHANGE_BASE
-                ) ?: DEFAULT_EXCHANGE_BASE
-            )
+        val database = getDatabase(applicationContext)
+        val sharedPreferences = PreferencesManager.getInstance(applicationContext)
+        val repository = ExchangeRateRepository.getInstance(database)
+
+        repository.getExchangeRates(sharedPreferences.getStringElement(
+            EXCHANGE_BASE_KEY, DEFAULT_EXCHANGE_BASE
+            ) ?: DEFAULT_EXCHANGE_BASE
+        )
         Result.success()
     } catch (e: Exception) {
         Result.retry()
