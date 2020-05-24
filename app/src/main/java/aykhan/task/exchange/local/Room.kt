@@ -12,10 +12,16 @@ interface ExchangeDao {
     fun getExchangeRates(): LiveData<List<ExchangeRate>>
 
     @Insert(onConflict = REPLACE)
+    fun insert(exchangeRate: ExchangeRate)
+
+    @Insert(onConflict = REPLACE)
     fun insertAll(vararg exchangeRate: ExchangeRate)
 
     @Query("delete from exchangeRates where code like :code")
     fun delete(code: String)
+
+    @Query("update exchangeRates set refreshTrigger = refreshTrigger * (-1)")
+    fun refreshData()
 
 }
 
@@ -24,6 +30,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract val exchangeRateDao: ExchangeDao
 }
 
+private const val DATABASE_NAME = "ExchangeRates"
 private lateinit var INSTANCE: AppDatabase
 
 fun getDatabase(context: Context): AppDatabase {
@@ -32,7 +39,7 @@ fun getDatabase(context: Context): AppDatabase {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java,
-                "ExchangeRates"
+                DATABASE_NAME
             ).build()
         }
     }

@@ -59,24 +59,6 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{exchangeItemData.numericCode}"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            tools:text="Numeric Code: 826" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{exchangeItemData.alphaCode}"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            tools:text="Alpha Code: GBP" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/space_default" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@{Double.toString(exchangeItemData.rate)}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             tools:text="Rate: 0.888787228515155" />

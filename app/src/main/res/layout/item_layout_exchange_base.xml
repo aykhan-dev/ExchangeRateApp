@@ -33,17 +33,6 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/space_default" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{exchangeItemData.name}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                tools:text="Name: U.K. Pound Sterling" />
-
-            <Space
-                android:layout_width="match_parent"
                 android:layout_height="@dimen/space_large" />
 
             <com.google.android.material.textfield.TextInputLayout
